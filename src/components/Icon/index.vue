@@ -7,6 +7,8 @@ import Loading from './Loading'
 import Copy from './Copy'
 import ChevronDown from './ChevronDown'
 import Chat from './Chat'
+import Back from './Back'
+import Close from './Close'
 export default {
   props: {
     name: {
@@ -14,6 +16,6 @@ export default {
       required: true
     }
   },
-  components: { Loading, Copy, ChevronDown, Chat }
+  components: { Loading, Copy, ChevronDown, Chat, Back, Close }
 }
 </script>
