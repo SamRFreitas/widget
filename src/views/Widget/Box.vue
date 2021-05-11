@@ -13,7 +13,7 @@
         :class="{ invisible: canGoBack }"
         class="text-xl text-gray-800 focus:outline-none"
       >
-        <icon name="arrow-right" :color="colors.gray['800']" />
+        <icon name="Back" :color="colors.gray['800']" />
       </button>
 
       <p
@@ -31,7 +31,7 @@
       </button>
     </div>
 
-    widget
+    <wizard />
 
     <div class="text-gray-800 text-sm flex" v-if="canShowAdditionalControlAndInfo">
       <icon name="Chat" class="mr-1" :color="brandColors.graydark" />
@@ -43,10 +43,14 @@
 
 <script lang="ts">
 import { defineComponent, computed, ComputedRef, SetupContext } from 'vue'
-import { brand } from '../../../palette'
-import colors from 'tailwindcss/colors'
 import useStore from '../../hooks/store'
 import Icon from '../../components/Icon/index.vue'
+import Wizard from '../../components/Wizard/index.vue'
+import useNavigation, { Navigation } from '../../hooks/navigation'
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { brand } = require('../../../palette')
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const colors = require('tailwindcss/colors')
 
 interface SetupReturn {
   emit: SetupContext['emit'];
@@ -55,13 +59,16 @@ interface SetupReturn {
   canShowAdditionalControlAndInfo: ComputedRef<boolean>;
   colors: Record<string, string>;
   brandColors: Record<string, string>;
+  back: Navigation['back']
 }
 
 export default defineComponent({
   emits: ['close-box'],
-  components: { Icon },
+  components: { Icon, Wizard },
   setup (_, { emit }: SetupContext): SetupReturn {
     const store = useStore()
+
+    const { back } = useNavigation()
 
     const label = computed<string>(() => {
       if (store.feedbackType === 'ISSUE') {
@@ -93,7 +100,8 @@ export default defineComponent({
       colors,
       canGoBack,
       canShowAdditionalControlAndInfo,
-      brandColors: brand
+      brandColors: brand,
+      back
     }
   }
 })
