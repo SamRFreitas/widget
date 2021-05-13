@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col items-center justify-between w-full my-5">
     <icon
-      name="check"
+      name="Check"
       :color="palette.success"
       size="70" />
 
