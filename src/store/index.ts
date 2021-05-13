@@ -5,7 +5,7 @@ export type StoreState = {
   feedbackType: string;
   message: string;
   apiKey: string;
-  fingerPrint: string;
+  fingerprint: string;
   currentPage: string;
 }
 
@@ -13,7 +13,7 @@ const initialState: StoreState = {
   currentComponent: 'SelectFeedbackType',
   message: '',
   feedbackType: '',
-  fingerPrint: '',
+  fingerprint: '',
   apiKey: '',
   currentPage: ''
 }
@@ -33,7 +33,7 @@ export function setFeedbackType (feedbackType: string): void {
 }
 
 export function setFingerPrint (fingerPrint: string): void {
-  state.fingerPrint = fingerPrint
+  state.fingerprint = fingerPrint
 }
 
 export function setApiKey (apiKey: string): void {
@@ -48,7 +48,7 @@ export function resetStore (): void {
   setCurrentComponent(initialState.currentComponent)
   setMessage(initialState.message)
   setFeedbackType(initialState.feedbackType)
-  setFingerPrint(initialState.fingerPrint)
+  setFingerPrint(initialState.fingerprint)
   setApiKey(initialState.apiKey)
   setCurrentPage(initialState.currentComponent)
 }

@@ -31,7 +31,7 @@ import useNavigation from '../../hooks/navigation'
 import { setMessage } from '../../store'
 import Icon from '../Icon/index.vue'
 import useStore from '../../hooks/store'
-const services = {}
+import services from '../../services'
 type State = {
   feedback: string;
   isLoading: boolean;
@@ -61,26 +61,26 @@ export default defineComponent({
       setErrorState()
     }
     async function submitAFeedback (): Promise<void> {
-      // setMessage(state.feedback)
-      // state.isLoading = true
-      // try {
-      //   const response = await services.feedback.create({
-      //     type: store.feedbackType,
-      //     text: store.message,
-      //     page: store.currentPage,
-      //     apiKey: store.apiKey,
-      //     device: window.navigator.userAgent,
-      //     fingerprint: store.fingerPrint
-      //   })
-      //   if (!response.errors) {
-      //     setSuccessState()
-      //   } else {
-      //     setErrorState()
-      //   }
-      //   state.isLoading = false
-      // } catch (error) {
-      //   handleError(error)
-      // }
+      setMessage(state.feedback)
+      state.isLoading = true
+      try {
+        const response = await services.feedbacks.create({
+          type: store.feedbackType,
+          text: store.message,
+          page: store.currentPage,
+          apiKey: store.apiKey,
+          device: window.navigator.userAgent,
+          fingerprint: store.fingerprint
+        })
+        if (!response.errors) {
+          setSuccessState()
+        } else {
+          setErrorState()
+        }
+        state.isLoading = false
+      } catch (error) {
+        handleError(error)
+      }
     }
     return {
       state,

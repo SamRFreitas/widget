@@ -9,6 +9,8 @@ import ChevronDown from './ChevronDown'
 import Chat from './Chat'
 import Back from './Back'
 import Close from './Close'
+import Check from './Check'
+import Atention from './Atention'
 export default {
   props: {
     name: {
@@ -16,6 +18,6 @@ export default {
       required: true
     }
   },
-  components: { Loading, Copy, ChevronDown, Chat, Back, Close }
+  components: { Loading, Copy, ChevronDown, Chat, Back, Close, Check, Atention }
 }
 </script>
